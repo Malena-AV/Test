@@ -38,5 +38,41 @@ namespace Test.Tests
 
             }
         }
+
+        [TestMethod()]
+        public void MethodTest2()
+        {
+            int value = 3;
+
+            Assert.ThrowsException<NullReferenceException>(() => ExampleClass.Method(null, value));
+        }
+
+        [TestMethod()]
+        public void MethodTest3()
+        {
+            int[,] array = new int[,]
+            {
+                { 1, 2 },
+                { 1, 2 }
+            };
+            int value = 2;
+
+            int[,] expected = new int[,]
+            {
+                { 0, 0 },
+                { 0, 0 }
+            };
+
+            int[,] actual = ExampleClass.Method(array, value);
+
+            for (int i = 0; i < actual.GetLength(0); i++)
+            {
+                for (int j = 0; j < actual.GetLength(1); j++)
+                {
+                    Assert.AreEqual(expected[i, j], actual[i, j]);
+                }
+
+            }
+        }
     }
 }
